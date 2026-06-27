@@ -6,13 +6,13 @@ A Python-based pricing engine for vanilla and exotic options, featuring three mo
 
 ## Models implemented
 
-- **Black-Scholes** — closed-form analytical solution for European options
-- **Monte Carlo** — simulation-based pricing with convergence analysis
-- **Binomial Tree** — Cox-Ross-Rubinstein model with tree visualization
+- **Black-Scholes** : closed-form analytical solution for European options
+- **Monte Carlo** : simulation-based pricing with convergence analysis
+- **Binomial Tree** : Cox-Ross-Rubinstein model with tree visualization
 
 ## Greeks
 
-Full sensitivity analysis : Delta, Gamma, Vega, Theta, Rho — computed analytically and visualized across spot prices.
+Full sensitivity analysis : Delta, Gamma, Vega, Theta, Rho (computed analytically and visualized across spot prices).
 
 ## Exotic options
 
