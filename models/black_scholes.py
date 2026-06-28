@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jun 27 21:18:45 2026
 
-@author: user
-"""
 import numpy as np
 from scipy.stats import norm
 
