@@ -24,17 +24,3 @@ def binomial_tree(S, K, T, r, sigma, n_steps=100, option_type='call'):
 
 
 
-# Test
-S = 100
-K = 100
-T = 1
-r = 0.05
-sigma = 0.2
-
-bt_call = binomial_tree(S, K, T, r, sigma, option_type='call')
-bt_put = binomial_tree(S, K, T, r, sigma, option_type='put')
-
-print(f"Binomial Tree call : {bt_call:.4f}")
-print(f"Binomial Tree put  : {bt_put:.4f}")
-print(f"Black-Scholes call : 10.4506")
-print(f"Black-Scholes put  : 5.5735")
