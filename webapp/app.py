@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 import sys
 import os
 
@@ -41,7 +42,6 @@ col1.metric("Black-Scholes", f"${bs_price:.4f}")
 col2.metric("Monte Carlo", f"${mc_price:.4f}")
 col3.metric("Binomial Tree", f"${bt_price:.4f}")
 
-
 # Greeks
 st.subheader("Greeks")
 
@@ -57,7 +57,6 @@ col2.metric("Gamma", f"{g:.4f}")
 col3.metric("Vega", f"{v:.4f}")
 col4.metric("Theta", f"{t:.4f}")
 col5.metric("Rho", f"{rh:.4f}")
-
 
 # Greeks chart
 st.subheader("Greeks across spot prices")
@@ -89,25 +88,26 @@ axes[1,1].set_title('Theta')
 plt.tight_layout()
 st.pyplot(fig)
 
+# Stress testing
+st.subheader("Stress Testing — Volatility Regimes")
 
+regimes = {
+    'Low vol (VIX < 15)': 0.10,
+    'Normal vol (VIX 15-25)': 0.20,
+    'High vol (VIX > 30)': 0.40
+}
 
+results = {}
+for regime, sig in regimes.items():
+    results[regime] = {
+        'call_price': black_scholes_call(S, K, T, r, sig),
+        'put_price': black_scholes_put(S, K, T, r, sig),
+        'delta': delta(S, K, T, r, sig, opt),
+        'gamma': gamma(S, K, T, r, sig),
+        'vega': vega(S, K, T, r, sig),
+        'theta': theta(S, K, T, r, sig, opt)
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+df = pd.DataFrame(results).T
+df.index.name = 'Regime'
+st.dataframe(df.style.format("{:.4f}"))
