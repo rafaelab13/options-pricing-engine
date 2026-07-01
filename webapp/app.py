@@ -111,3 +111,32 @@ for regime, sig in regimes.items():
 df = pd.DataFrame(results).T
 df.index.name = 'Regime'
 st.dataframe(df.style.format("{:.4f}"))
+
+
+
+
+# Stress test bar chart
+labels = list(regimes.keys())
+call_prices = [results[r]['call_price'] for r in labels]
+put_prices = [results[r]['put_price'] for r in labels]
+colors = ['green', 'orange', 'red']
+
+fig2, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
+
+ax1.bar(labels, call_prices, color=colors)
+ax1.set_title('Call price by regime')
+ax1.tick_params(axis='x', rotation=15)
+
+ax2.bar(labels, put_prices, color=colors)
+ax2.set_title('Put price by regime')
+ax2.tick_params(axis='x', rotation=15)
+
+plt.tight_layout()
+st.pyplot(fig2)
+
+
+
+
+
+
+
